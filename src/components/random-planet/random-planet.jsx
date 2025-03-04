@@ -12,8 +12,8 @@ export default class RandomPlanet extends Component {
         loading: true
     };
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.updatePlanet();
     }
 
@@ -25,7 +25,7 @@ export default class RandomPlanet extends Component {
     }
 
     updatePlanet() {
-        const id = 12
+        const id = Math.floor(Math.random()*15) + 2;
         this.swapiService
             .getPlanet(id)
             .then(this.onPlanetLoaded)
@@ -46,7 +46,7 @@ export default class RandomPlanet extends Component {
 }
 
 const PlanetView = ({planet}) => {
-    const {id, name, population, rotationPeriond, diametr} = planet
+    const {id, name, population, rotationPeriond, diametr} = planet;
 
     return (
         <React.Fragment>
