@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 
 import './item-details.css'
-import SwapiService from "../../services/swapi-service.jsx";
-import Spinner from '../spinner'
+import SwapiService from "../../services/swapi-service"
+import Spinner from "../spinner"
 
 // Экспортируем Record, чтобы можно было импортировать в других компонентах
 export const Record = ({ item, field, label }) => {
     return (
         <li className="list-group-item">
             <span className="term">{label}</span>
-            <span>{item[field]}</span>
+            <span>{ item[field] }</span>
         </li>
     )
 }
@@ -76,15 +76,15 @@ const ItemDetailsView = ({ item, image, context }) => {
     return (
         <React.Fragment>
             <img className="person-image" alt="person" src={image} />
-
             <div className="card-body">
                 <h4>{name}</h4>
                 <ul className="list-group list-group-flush">
                     {React.Children.map(context, (child) => {
-                        return React.cloneElement(child, { item });
+                        return React.cloneElement(child, { item })
                     })}
                 </ul>
             </div>
         </React.Fragment>
+
     )
 }
