@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import SwapiService from '../../services/swapi-service';
 
 import './item-list.css'
 
@@ -12,13 +13,14 @@ export default class ItemList extends Component {
     }
 
     componentDidMount() {
-        const { getData } = this.props
+        const { getData = () => Promise.resolve([]) } = this.props
 
         getData()
             .then((itemList) => {
                 this.setState({ itemList })
             })
     }
+
 
     renderItems(arr) {
         return arr.map((item) => {
