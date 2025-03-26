@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import ItemList from '../item-list/item-list'
+import ItemList from '../item-list/item-list.jsx'
 import ItemDetails, { Record } from '../item-details/item-details'
 import SwapiService from "../../services/swapi-service"
 import Row from "../row"
