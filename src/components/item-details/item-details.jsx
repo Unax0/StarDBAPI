@@ -1,27 +1,27 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
 
-import './item-details.css'
-import SwapiService from "../../services/swapi-service"
-import Spinner from "../spinner"
+import './item-details.css';
+import SwapiService from "../../services/swapi-service";
+import Spinner from "../spinner";
 
 // Экспортируем Record, чтобы можно было импортировать в других компонентах
 export const Record = ({ item, field, label }) => {
     return (
         <li className="list-group-item">
             <span className="term">{label}</span>
-            <span>{ item[field] }</span>
+            <span>{item[field]}</span>
         </li>
-    )
-}
+    );
+};
 
 export default class ItemDetails extends Component {
-    swapiService = new SwapiService()
+    swapiService = new SwapiService();
 
     state = {
         item: null,
         image: null,
         loading: true
-    }
+    };
 
     componentDidMount() {
         this.updateItem();
@@ -39,7 +39,7 @@ export default class ItemDetails extends Component {
     updateItem = () => {
         const { itemId, getData, getImageUrl } = this.props;
         if (!itemId) {
-            return
+            return;
         }
 
         getData(itemId)
@@ -51,42 +51,44 @@ export default class ItemDetails extends Component {
                 });
             })
             .catch(() => this.setState({ loading: false }));
-    }
+    };
 
     render() {
         const { item, image, loading } = this.state;
 
         if (!item) {
-            return <span>Select an item from a list</span>
+            return <span>Select an item from a list</span>;
         }
 
         const spinner = loading ? <Spinner /> : null;
-        const content = !loading ? <ItemDetailsView item={item} image={image} context={this.props.children} /> : null;
+        const content = !loading ? (
+            <ItemDetailsView item={item} image={image} context={this.props.children} />
+        ) : null;
 
         return (
             <div className="item-details card">
                 {spinner}
                 {content}
             </div>
-        )
+        );
     }
 }
 
 const ItemDetailsView = ({ item, image, context }) => {
-    const { name, type } = item
+    const { name, type } = item;
 
     return (
         <React.Fragment>
-            <img className="item-image" alt={`~-~${type}~-~`}
+            {/* Исправлен закрывающий слэш у тега img */}
+            <img className="item-image" src={image} alt={`~-~${type}~-~`} />
             <div className="card-body">
                 <h4>{name}</h4>
                 <ul className="list-group list-group-flush">
                     {React.Children.map(context, (child) => {
-                        return React.cloneElement(child, { item })
+                        return React.cloneElement(child, { item });
                     })}
                 </ul>
             </div>
         </React.Fragment>
-
-    )
-}
+    );
+};
