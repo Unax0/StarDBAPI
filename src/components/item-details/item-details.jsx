@@ -28,7 +28,9 @@ export default class ItemDetails extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.itemId !== prevProps.itemId) {
+        if (this.props.itemId !== prevProps.itemId ||
+            this.props.getData !== prevProps.getData ||
+            this.props.getImageUrl !== prevProps.getImageUrl) {
             this.updateItem();
             this.setState({ loading: true });
         }
@@ -37,7 +39,7 @@ export default class ItemDetails extends Component {
     updateItem = () => {
         const { itemId, getData, getImageUrl } = this.props;
         if (!itemId) {
-            return;
+            return
         }
 
         getData(itemId)

@@ -25,11 +25,8 @@ export default class PeoplePage extends Component {
         const {
             getPerson,
             getAllPeople,
-            getStarship,
-            getPlanet,
-            getPersonImage,
-            getStarshipImage,
-            getPlanetImage } = this.swapiService
+            getPersonImage
+        } = this.swapiService
 
         const itemList = (
             <ItemList onItemSelected={this.onItemSelected} getData={getAllPeople}>
