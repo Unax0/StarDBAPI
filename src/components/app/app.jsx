@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import StarshipDetails from "../sw-components/starship-details";
 import Header from '../header';
 import RandomPlanet from '../random-planet';
-import ErrorIndicator from "../error-indicator";
+import { ErrorIndicator, NotFoundIndicator } from "../errors/index.jsx"
 import ErrorBoundary from "../error-boundary";
 import { SwapiServiceProvider } from '../swapi-service-context';
 import SwapiService from "../../services/swapi-service";
@@ -51,7 +51,7 @@ export default class App extends Component {
                                     element={<LoginPage isLoggedIn={isLoggedIn} onLogin={this.onLogin} />}
                                 />
                                 <Route path="/secret" element={<SecretPage isLoggedIn={isLoggedIn} />} />
-                                <Route path="*" element={<h4>Page not found</h4>} />
+                                <Route component={NotFoundIndicator}/>
                             </Routes>
                         </div>
                     </Router>
