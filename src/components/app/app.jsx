@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import StarshipDetails from "../sw-components/starship-details";
 import Header from '../header'
 import RandomPlanet from '../random-planet'
 import ErrorIndicator from "../error-indicator"
@@ -33,15 +34,21 @@ export default class App extends Component {
         return (
             <ErrorBoundary>
                 <SwapiServiceProvider value={this.state.swapiService} >
-                    <div className="stardb-app">
-                        <Header/>
-                        <RandomPlanet />
+                    <Router>
+                        <div className="stardb-app">
+                            <Header/>
+                            <RandomPlanet />
 
-                        <PeoplePage />
-                        <PlanetsPage />
-                        <StarshipsPage />
-
-                    </div>
+                            <Route path="/" render={() => <h4>Welcome to StarDB</h4>} exact />
+                            <Route path="/people/:id?" component={PeoplePage} exact/>
+                            <Route path="/planets" component={PlanetsPage} exact/>
+                            <Route path="/starships" component={StarshipsPage} exact/>
+                            <Route path="/starships/:id" render={({ match }) => {
+                                const { id } = match.params
+                                return <StarshipDetails itemId={id} />
+                            }}/>
+                        </div>
+                    </Router>
                 </SwapiServiceProvider>
             </ErrorBoundary>
         )
