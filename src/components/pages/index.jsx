@@ -3,7 +3,7 @@ import PlanetsPage from "./planets-page"
 import StarshipsPage from "./starships-page"
 import SecretPage from "./secret-page"
 import LoginPage from "./login-page"
-import WelcomePage from "./start-page"
+import WelcomePage from "./start-page.jsx"
 
 export {
     PeoplePage,

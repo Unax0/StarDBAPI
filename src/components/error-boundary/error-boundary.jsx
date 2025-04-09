@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import { ErrorIndicator } from "../errors/index.jsx"
+import { ErrorIndicator } from "../errors"
 
 export default class ErrorBoundary extends Component {
 

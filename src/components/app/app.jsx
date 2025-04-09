@@ -41,14 +41,14 @@ export default class App extends Component {
                             <Header />
                             <RandomPlanet />
                             <Routes>
-                                <Route path="/" component={WelcomePage} exact />
+                                <Route path="/" element={<WelcomePage />} />
                                 <Route path="/people/:id?" element={<PeoplePage />} />
-                                <Route path="/planets/:id?" component={PlanetsPage} exact/>
+                                <Route path="/planets/:id?" element={<PlanetsPage />} />
                                 <Route path="/starships" element={<StarshipsPage />} />
                                 <Route path="/starships/:id" element={<StarshipDetails />} />
-                                <Route path="/login" element={<LoginPage isLoggedIn={isLoggedIn} onLogin={this.onLogin} />}/>
+                                <Route path="/login" element={<LoginPage isLoggedIn={isLoggedIn} onLogin={this.onLogin} />} />
                                 <Route path="/secret" element={<SecretPage isLoggedIn={isLoggedIn} />} />
-                                <Route component={NotFoundIndicator}/>
+                                <Route path="*" element={<NotFoundIndicator />} />
                             </Routes>
                         </div>
                     </Router>

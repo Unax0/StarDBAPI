@@ -10,7 +10,7 @@ const PlanetsPage = () => {
 
     return (
         <Row
-            left={<PlanetList onItemSelected={(id) => navigate(`/planets/${id}`)} />}
+            left={<PlanetList onItemSelected={(id) => navigate(id)} />}
             right={<PlanetDetails itemId={id} />}
         />
     );

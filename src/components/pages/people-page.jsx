@@ -10,7 +10,7 @@ const PeoplePage = () => {
 
     return (
         <Row
-            left={<PersonList onItemSelected={( id ) => history.push(id)} />}
+            left={<PersonList onItemSelected={(id) => navigate(id)} />}
             right={<PersonDetails itemId={id} />}
         />
     );
