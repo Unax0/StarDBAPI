@@ -7,7 +7,7 @@ import { ErrorIndicator, NotFoundIndicator } from "../errors/index.jsx"
 import ErrorBoundary from "../error-boundary";
 import { SwapiServiceProvider } from '../swapi-service-context';
 import SwapiService from "../../services/swapi-service";
-import { PeoplePage, PlanetsPage, StarshipsPage, LoginPage, SecretPage } from "../pages";
+import {PeoplePage, PlanetsPage, StarshipsPage, LoginPage, SecretPage, WelcomePage} from "../pages"
 import './app.css';
 
 export default class App extends Component {
@@ -41,15 +41,12 @@ export default class App extends Component {
                             <Header />
                             <RandomPlanet />
                             <Routes>
-                                <Route path="/" element={<h4>Welcome to StarDB</h4>} />
+                                <Route path="/" component={WelcomePage} exact />
                                 <Route path="/people/:id?" element={<PeoplePage />} />
                                 <Route path="/planets/:id?" component={PlanetsPage} exact/>
                                 <Route path="/starships" element={<StarshipsPage />} />
                                 <Route path="/starships/:id" element={<StarshipDetails />} />
-                                <Route
-                                    path="/login"
-                                    element={<LoginPage isLoggedIn={isLoggedIn} onLogin={this.onLogin} />}
-                                />
+                                <Route path="/login" element={<LoginPage isLoggedIn={isLoggedIn} onLogin={this.onLogin} />}/>
                                 <Route path="/secret" element={<SecretPage isLoggedIn={isLoggedIn} />} />
                                 <Route component={NotFoundIndicator}/>
                             </Routes>
